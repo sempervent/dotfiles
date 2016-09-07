@@ -38,6 +38,9 @@ inoremap jj <esc>
 " until the next search
 nnoremap <C-L> :nohl<CR><C-L>
 
+" ignore line wrap in line navigation
+nmap j gj
+nmap k gk
 " Commands {{{1
 " automatically source vimrc after changing it
 autocmd! bufwritepost .vimrc source %
