@@ -7,7 +7,7 @@
 ############ variables
 dir=~/dotfiles
 olddir=~/dotfiles_old
-files="vimrc bashrc"
+files="vimrc bashrc tmux.conf"
 
 ############ work
 
