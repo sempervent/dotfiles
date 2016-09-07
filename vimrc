@@ -35,15 +35,24 @@ set foldmethod=marker
 " Mappings {{{1
 inoremap jj <esc>
 " map <c-L> (redraw screen) to also turn off search hihglihgting
+
 " until the next search
 nnoremap <C-L> :nohl<CR><C-L>
 
 " ignore line wrap in line navigation
 nmap j gj
 nmap k gk
+" control space to close fold
+nmap <C-space> zc
+" space to open fold
+nmap <space> za
 " Commands {{{1
 " automatically source vimrc after changing it
 autocmd! bufwritepost .vimrc source %
-
+" indent folding with manual folds
+augroup vimrc
+   au BufReadPre * setlocal foldmethod=indent
+   au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
+augroup END
 " Custom Scripts {{{1
 

@@ -54,4 +54,11 @@ NC="\e[m"
 #------------------------------------
 
 
-PS1="\n\[$NC\[\016\[l\[\017\][$GREEN\]\u\[$NC\]@\[$BLUE\]\h\[$NC\]]-[\[$RED\]\j\[$NC\]]-[\[$BPURP\]\@\[$NC\]]-[\[$CYAN\]\d\[$NC]\[\n\]\[\016\]\]\[m\]\[\017\]-[\[$YELLOW\]\w\[$NC\]]-\\[$\]"
+PS1="\n\[$NC\[\016\[l\[\017\][$GREEN\]\u\[$NC\]@\[$BLUE\]\h\[$NC\]]━[\[$RED\]\j\[$NC\]]━[\[$BPURP\]\@\[$NC\]]━[\[$CYAN\]\d\[$NC]\[\n\]\[\016\]\]\[m\]\[\017\]━[\[$YELLOW\]\w\[$NC\]]━\\[$ \]"
+# Aliases {{{1
+alias less='less --RAW-CONTROL-CHARS'
+export LS_OPTS='--color=auto'
+alias ls='ls ${LS_OPTS}'
+export GREP_OPTIONS='--color=auto'
+alias stopcolors='sed "s/\[^[[0-9;]*[a-zA-Z]//gi"'
+
