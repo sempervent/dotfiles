@@ -51,7 +51,7 @@ colorscheme molokai
 " 1}}}
 " Tab, Backspace, Folds {{{1
 set backspace=indent,eol,start
-set tabstop=8
+set tabstop=3
 set shiftwidth=3
 set expandtab
 set foldmethod=marker
@@ -103,6 +103,8 @@ let vimrplugin_conqueplugin = 0
 let g:vimrplugin_map_r = 1
 " see R documentation in a vim buffer
 let vimrplugin_vimpager = "no"
+" let me use underscore
+let vimrplugin_assign = 0
 " start R with F2 key
 map <F2> <Plug>RStart
 imap <F2> <Plug>RStart
