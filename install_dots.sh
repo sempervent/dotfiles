@@ -7,19 +7,21 @@
 ############ variables
 dir=~/dotfiles
 olddir=~/dotfiles_old
-files="vimrc bashrc tmux.conf gitconfig"
-source colors.sh
+i3dir=~/.i3
+files="vimrc bashrc tmux.conf gitconfig xinitrc Xresources Xdefaults"
+i3files='i3config'
+source $dir/colors.sh
 ############ work
 
 # create dotfiles_old in homedir
-echo -e "${NC} Creating ${LCYAN}${olddir}${NC} for backup of any existing dotfiles in ~"
+echo -e "${NC}Creating ${LCYAN}${olddir}${NC} for backup of any existing dotfiles in ~"
 mkdir -p ${olddir}
-echo -e "...${GREEN}done\n"
+echo -e "\t\t\t\t\t...${GREEN}done\n"
 
 # change to dotfiles dir
 echo -e "${NC}Changing directory to ${LCYAN}${dir}${NC} directory"
 cd ${dir}
-echo -e "...${GREEN}done${NC}\n"
+echo -e "\t\t\t\t\t...${GREEN}done${NC}\n"
 
 # move any existing dotfiles in homedir to dotfiles_old directory
 # then create symlinks
@@ -30,4 +32,10 @@ for file in $files; do
    ln -s $dir/$file ~/.$file
 done
 
-
+# move i3 files
+echo -e "Changing to ${YELLOW}${i3dir}${NC}"
+cd ${i3dir}
+echo -e "Backing up i3config"
+mv ~/.i3/config ~/.i3/config.back
+echo -e "\tCreating symlink to ${GREEN}${i3files}${NC} in ${CYAN}${i3dir}${NC}.\n"
+ln -s ~/dotfiles/i3config ~/.i3/config 

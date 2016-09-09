@@ -4,6 +4,8 @@ case $- in
       *) return;;
 esac
 
+#powerline-daemon -q
+#. /usr/local/lib/python2.7/dist-packages/powerline/bindings/bash/powerline.sh
 ###################
 # History {{{1
 ###################
@@ -54,11 +56,38 @@ NC="\e[m"
 #------------------------------------
 
 
-PS1="\n\[$NC\[\016\[l\[\017\][$GREEN\]\u\[$NC\]@\[$BLUE\]\h\[$NC\]]━[\[$RED\]\j\[$NC\]]━[\[$BPURP\]\@\[$NC\]]━[\[$CYAN\]\d\[$NC]\[\n\]\[\016\]\]\[m\]\[\017\]━[\[$YELLOW\]\w\[$NC\]]━\\[$ \]"
+PS1="\n\[$NC\[\016\[┌\[\017\][$GREEN\]\u\[$NC\]@\[$BLUE\]\h\[$NC\]]-[\[$RED\]\j\[$NC\]]-[\[$BPURP\]\@\[$NC\]]-[\[$CYAN\]\d\[$NC]\[\n\]\[\016\]\]\[└\]\[\017\]-[\[$YELLOW\]\w\[$NC\]]-\\[$ \]"
+#------------------------------------
 # Aliases {{{1
+#------------------------------------
 alias less='less --RAW-CONTROL-CHARS'
 export LS_OPTS='--color=auto'
 alias ls='ls ${LS_OPTS}'
 export GREP_OPTIONS='--color=auto'
 alias stopcolors='sed "s/\[^[[0-9;]*[a-zA-Z]//gi"'
+alias aptinstall='sudo aptitude install'
+#------------------------------------
+# Custom Commands {{{1
+#------------------------------------
+aptsearch () 
+{
+   # search and highlight keyword in the results
+   export GREP_COLOR='1'
+   # remove regexp patterns from the keyword to highlight
+   keyword=`echo -n "$1" | sed -e 's/[^[:alnum:]|-]//g'`
+   echo "Highlight keyword: $keyword"
+   aptitude search "$1" --disable-columns | egrep --color "$keyword"
+
+   # use the matching results to complete our install command
+   matching=$(aptitude search --disable-columns -F "%p" "$1" | tr '\n' ' ')
+   count=0
+   for i in $matching ; do
+      count=$((count + 1))
+   done
+   complete -W '$matching' aptinstall
+   echo "(Matching packages: $count)"
+   if ! [ -z $2 ] ; then
+      echo -e "$matching" | egrep --color=always "$keyword"
+   fi
+}
 
