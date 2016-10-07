@@ -27,7 +27,11 @@ shopt -s checkwinsize
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# Do Prompt Stuff {{{1
+#-----------------------------------
+# Path
+#-----------------------------------
+export PATH=$PATH:/home/josh/scripts
+
 # set variable identifying the chroot you work in
 
 # set a fancy propmt (non-color, unless we know we "want" color)
@@ -66,6 +70,12 @@ alias ls='ls ${LS_OPTS}'
 export GREP_OPTIONS='--color=auto'
 alias stopcolors='sed "s/\[^[[0-9;]*[a-zA-Z]//gi"'
 alias aptinstall='sudo aptitude install'
+#alias bullshit='curl -s http://cbsg.sourceforge.net/cgi-bin/live | grep -Eo '^<li>.*</li>' | sed s,\</\\?li\>,,g | shuf -n 1'
+alias lstree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/' | less"
+#------------------------------------
+# Export {{{1
+#------------------------------------
+
 #------------------------------------
 # Custom Commands {{{1
 #------------------------------------
@@ -90,4 +100,6 @@ aptsearch ()
       echo -e "$matching" | egrep --color=always "$keyword"
    fi
 }
-
+markdown(){
+   ~/scripts/Markdown_1.0.1/Markdown.pl $1 | lynx -stdin
+}
