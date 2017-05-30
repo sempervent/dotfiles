@@ -30,7 +30,7 @@ echo -e "\t\t\t\t\t...${GREEN}done${NC}\n"
 # then create symlinks
 for file in $files; do
    echo -e "Moving any existing ${LRED}${file}${NC} from ~ to $olddir"
-   mv ~/.$file ~/dotfiles_old/
+   mv ~/.$file ${olddir} 
    echo -e "\tCreating symlink to ${GREEN}${file}${NC} in home directory.\n"
    ln -s $dir/$file ~/.$file
 done
