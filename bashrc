@@ -34,7 +34,16 @@ export PATH=$PATH:/home/josh/scripts:$JAVA_HOME/bin
 export EDITOR='vim'
 export LD_LIBRARY_PATH=/usr/lib/R/lib:lib/usr/lib/x86_64-linux-gnu:/usr/lib/jvm/default-java/jre/lib/amd64/server:@JAVA_LD@
 export JAVA_HOME=/usr/lib/jvm/java-7-openjdk/jre/bin/java:/usr/bin/jvm/java-7-openjdk
+export HADOOP_INSTALL=/usr/local/hadoop
 export PATH=/usr/local/texlive/2016/bin/x86_64:$PATH
+export PATH=$PATH:$HADOOP_INSTALL/bin
+export PATH=$PATH:$HADOOP_INSTALL/sbin
+export HADOOP_HOME=$HADOOP_INSTALL
+export HADOOP_MAPRED_HOME=$HADOOP_INSTALL
+export HADOOP_COMMON_HOME=$HADOOP_INSTALL
+export HADOOP_HDFS_HOME=$HADOOP_INSTALL
+export HADOOP_YARN_HOME=$HADOOP_INSTALL
+export HADOOP_CONF_DIR=$HADOOP_INSTALL/etc/hadoop
 # make X11 port forwarding work for cygwin laptop
 export DISPLAY=:10.0
 

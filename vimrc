@@ -172,6 +172,9 @@ map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
 map <leader>t<leader> :tabnext<cr>
 
+" quickly resize vertical windows with <ALT><SHIFT> + < | >
+map <M-<> <C-W><
+map <M->> <C-W>>
 " 1}}}
 " Commands {{{1
 
