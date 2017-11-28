@@ -57,9 +57,9 @@ Plugin 'jalvesaq/Nvim-R'
 call vundle#end()
 
 " configure powerline
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
+python3 from powerline.vim import setup as powerline_setup
+python3 powerline_setup()
+python3 del powerline_setup
 "set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim
 " 1}}}
 " General Settings {{{1
@@ -120,6 +120,11 @@ set autoindent
 set nobackup
 set nowb
 set noswapfile
+" if vim can, give me persistent undo
+if has('persistent_undo')   " only if vim supports it
+   set undofile             " turn it on
+   set undodir=$HOME/.vim/undo "make sure this directory exists
+endif
 " 1}}}
 " Movement Settings {{{1
 set scrolloff=7
@@ -180,6 +185,11 @@ map <M->> <C-W>>
 
 " automatically source vimrc after changing it
 autocmd! bufwritepost .vimrc source %
+
+" remember where last edited in file
+if has("autocmd")
+   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+endif
 
 " indent folding with manual folds
 augroup vimrc

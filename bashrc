@@ -44,8 +44,6 @@ export HADOOP_COMMON_HOME=$HADOOP_INSTALL
 export HADOOP_HDFS_HOME=$HADOOP_INSTALL
 export HADOOP_YARN_HOME=$HADOOP_INSTALL
 export HADOOP_CONF_DIR=$HADOOP_INSTALL/etc/hadoop
-# make X11 port forwarding work for cygwin laptop
-export DISPLAY=:10.0
 
 # set variable identifying the chroot you work in
 
@@ -70,22 +68,38 @@ WHITE='\e[0;37m'
 BPURP='\e[1;34m'
 NC="\e[m"
 
+filenumber()
+{
+   /bin/ls -l | /usr/bin/wc -l | /bin/sed 's: ::g'
+}
+
+filesize()
+{
+   /bin/ls -lah | /bin/grep -m 1 total | /bin/sed 's/total //'
+}
+
+rightprompt()
+{
+   printf "%*s" $COLUMNS "$NCⁿ$RED\j $NCª$YELLOW\!"
+   # printf "%*s" $COLUMNS "$NCヘ$YELLOW$(/bin/ls -l | /usr/bin/wc -l | /bin/sed 's: ::g')"
+   # printf "%*s" $COLUMNS "$NC$YELLOW$(filenumber;)$NC▨$YELLOW$(filesize;)b"
+}
 #------------------------------------
 # Greeting, motd, etc... {{{1
 #------------------------------------
-
-
-PS1="\n\[$NC\[\016\[┌\[\017\][$GREEN\]\u\[$NC\]@\[$BLUE\]\h\[$NC\]]-[\[$RED\]\j\[$NC\]]-[\[$BPURP\]\@\[$NC\]]-[\[$CYAN\]\d\[$NC]\[\n\]\[\016\]\]\[└\]\[\017\]-[\[$YELLOW\]\w\[$NC\]]-\\[$ \]"
+PS1="\n\[$(tput sc; rightprompt; tput rc)$NC┏┫$GREEN\]\u\[$NC\]@\[$BLUE\]\h\[$NC\]┣━━┫\[$BPURP\]\@\[$NC\]┣━━┫\[$CYAN\]\d\[$NC┣━━┫$YELLOW$(filenumber;)$NC⌂$YELLOW$(filesize;)b$NC┃\n┗━┫\[$YELLOW\]\w\[$NC\]┃ "
 #------------------------------------
 # Aliases {{{1
 #------------------------------------
 alias less='less --RAW-CONTROL-CHARS'
 export LS_OPTS='--color=auto'
 alias ls='ls ${LS_OPTS}'
-export GREP_OPTIONS='--color=auto'
+# export GREP_OPTIONS='--color=auto'
+alias grep='grep --color=auto'
 alias stopcolors='sed "s/\[^[[0-9;]*[a-zA-Z]//gi"'
 alias aptinstall='sudo aptitude install'
-#alias bullshit='curl -s http://cbsg.sourceforge.net/cgi-bin/live | grep -Eo '^<li>.*</li>' | sed s,\</\\?li\>,,g | shuf -n 1'
+# alias bullshit="curl -s http://cbsg.sourceforge.net/cgi-bin/live | grep -Eo '<li>(.*?)</li>' | sed s,\</\?li\>,,g | shuf -n 1 | cowsay -f kosh"
+alias bullshit="curl -s http://cbsg.sourceforge.net/cgi-bin/live | grep -Eo '<li>(.*?)</li>' | sed -e 's/<[^>]*>//g' | shuf -n 1 | cowsay -f kosh"
 alias lstree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/' | less"
 #------------------------------------
 # Custom {{{1
