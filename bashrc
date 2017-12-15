@@ -106,13 +106,6 @@ alias bright="xbacklight -set 99"
 #------------------------------------
 # Custom {{{1
 #------------------------------------
-ls() {
-   if [[ $@ == "-la" ]]; then
-      command ls -la | less
-   else
-      command ls "$@"
-   fi
-}
 #source ~/.bin/tmuxinator.bash
 #------------------------------------
 # Custom Commands {{{1
@@ -140,4 +133,12 @@ aptsearch ()
 }
 markdown(){
    ~/scripts/Markdown_1.0.1/Markdown.pl $1 | lynx -stdin
+}
+ls()
+{
+   if [[ $@ == "-la" ]]; then
+      command ls -la | less
+   else
+      command ls "$@"
+   fi
 }
