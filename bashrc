@@ -104,6 +104,13 @@ alias lstree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's
 #------------------------------------
 # Custom {{{1
 #------------------------------------
+ls() {
+   if [[ $@ == "-la" ]]; then
+      command ls -la | less
+   else
+      command ls "$@"
+   fi
+}
 #source ~/.bin/tmuxinator.bash
 #------------------------------------
 # Custom Commands {{{1
