@@ -142,3 +142,4 @@ ls()
       command ls "$@"
    fi
 }
+ wal -R
