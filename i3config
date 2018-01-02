@@ -156,7 +156,10 @@ bar {
    font pango:FuraMono-Bold Powerline 10px
    colors {
             background #110B11
+            statusline #999999
+            separator #a99fd2
    }
+   binding_mode_indicator yes 
         #status_command i3status
         status_command $HOME/dotfiles/conky/conkyi3wrapper.sh
         position top

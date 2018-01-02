@@ -1,0 +1,7 @@
+#!/usr/bash
+# Vim Install Vundle
+cd ~ || exit
+cd .vim || mkdir .vim
+mkdir bundle || cd .vim
+
+git -C ~/.vim/bundle/ clone https://github.com/VundleVim/Vundle.vim
