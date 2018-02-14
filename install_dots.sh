@@ -9,7 +9,7 @@ dir=~/dotfiles
 olddir=~/.dotfiles_old
 i3dir=~/.i3
 # configdir=~/.config
-files="vimrc bashrc tmux.conf gitconfig xinitrc Xresources Xdefaults"
+files="vimrc bashrc tmux.conf gitconfig xinitrc Xresources Xdefaults minttyrc"
 i3files='i3config'
 pwrlnconfig=~/.config/powerline
 pwrln="tmux_powerline.conf"
@@ -41,10 +41,10 @@ while getopts ":i" opt; do
 done
 
 
-if [ $EUID != 0 ]; then
-   sudo "$0" "$@"
-   exit $?
-fi
+#if [ $EUID != 0 ]; then
+#   sudo "$0" "$@"
+#   exit $?
+#fi
 
 
 ############ work

@@ -134,12 +134,11 @@ aptsearch ()
 markdown(){
    ~/scripts/Markdown_1.0.1/Markdown.pl $1 | lynx -stdin
 }
-ls()
-{
+ls(){
    if [[ $@ == "-la" ]]; then
       command ls -la | less
    else
       command ls "$@"
    fi
 }
- wal -R
+#wal -R
