@@ -2,5 +2,5 @@
 
 *background: #110B11
 *foreground: #B7990D
-*Font: DroidSansMono
+#*Font: DroidSansMonoforPowerline
 URxvt*scrollBar: false
