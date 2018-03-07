@@ -101,8 +101,11 @@ alias aptinstall='sudo aptitude install'
 # alias bullshit="curl -s http://cbsg.sourceforge.net/cgi-bin/live | grep -Eo '<li>(.*?)</li>' | sed s,\</\?li\>,,g | shuf -n 1 | cowsay -f kosh"
 alias bullshit="curl -s http://cbsg.sourceforge.net/cgi-bin/live | grep -Eo '<li>(.*?)</li>' | sed -e 's/<[^>]*>//g' | shuf -n 1 | cowsay -f kosh"
 alias lstree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/' | less"
+alias night="xrandr --output LVDS-1 --brightness 0.3"
 alias dim="xbacklight -set 1"
 alias bright="xbacklight -set 99"
+alias dim="xbacklight -dec 10 -steps 50"
+alias suspend="sudo systemctl suspend"
 #------------------------------------
 # Custom {{{1
 #------------------------------------
