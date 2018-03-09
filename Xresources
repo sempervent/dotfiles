@@ -5,4 +5,7 @@ URxvt*letterSpace:   -2
 URxvt.font:  xft:Source Code Pro for Powerline:pixelsize=11
 XTerm*faceName: Source Code Pro for Powerline:size=9
 XTerm.termName: xterm-256color
-
+rofi.combi-modi: window,drun,ssh
+rofi.theme: solarized
+rofi.font: hack 10
+rofi.modi: combi
