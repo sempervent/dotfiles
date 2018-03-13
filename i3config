@@ -163,6 +163,9 @@ new_window none
 # finds out, if available)
 
 bar {
+   mode hide
+   hidden_state hide
+   modifier $mod
    font pango:FuraMono-Bold Powerline 10px
    colors {
             background #110B11
@@ -170,9 +173,10 @@ bar {
             separator #a99fd2
    }
    binding_mode_indicator yes 
-        #status_command i3status
-        status_command $HOME/dotfiles/conky/conkyi3wrapper.sh
-        position top
+   #status_command i3status
+   status_command $HOME/dotfiles/conky/conkyi3wrapper.sh
+   position top
+   tray_output primary
 }
 
 exec --no-startup-id i3-msg 'workspace trello; exec ~/dotfiles/i3/chromium_fs.sh https://trello.com/b/NdpDAqYd/home'

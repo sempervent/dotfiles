@@ -106,6 +106,7 @@ alias dim="xbacklight -set 1"
 alias bright="xbacklight -set 99"
 alias dim="xbacklight -dec 10 -steps 50"
 alias suspend="sudo systemctl suspend"
+alias trello="chromium --app=https://trello.com --start-maximized --start-fullscreen"
 #------------------------------------
 # Custom {{{1
 #------------------------------------
