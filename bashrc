@@ -106,7 +106,9 @@ alias dim="xbacklight -set 1"
 alias bright="xbacklight -set 99"
 alias dim="xbacklight -dec 10 -steps 50"
 alias suspend="sudo systemctl suspend"
-alias trello="chromium --app=https://trello.com --start-maximized --start-fullscreen"
+alias trello="chromium --app=https://trello.comn"
+alias rstudio="chromium --app=http://192.168.1.178:8787"
+alias google="chromium --app=https://google.com"
 #------------------------------------
 # Custom {{{1
 #------------------------------------
@@ -137,12 +139,5 @@ aptsearch ()
 }
 markdown(){
    ~/scripts/Markdown_1.0.1/Markdown.pl $1 | lynx -stdin
-}
-ls(){
-   if [[ $@ == "-la" ]]; then
-      command ls -la | less
-   else
-      command ls "$@"
-   fi
 }
 #wal -R
