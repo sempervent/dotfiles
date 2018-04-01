@@ -51,6 +51,9 @@ export HADOOP_HDFS_HOME=$HADOOP_INSTALL
 export HADOOP_YARN_HOME=$HADOOP_INSTALL
 export HADOOP_CONF_DIR=$HADOOP_INSTALL/etc/hadoop
 # 1}}}
+# exported options {{{1
+export LS_OPTS='--color=auto'
+# 1}}}
 # Aesthetics {{{1
 # set variable identifying the chroot you work in {{{2
 # 2}}}
@@ -74,7 +77,7 @@ BPURP='\e[1;34m'
 NC="\e[m"
 # 2}}}
 # 1}}}
-
+# prompt functions {{{1
 filenumber()
 {
    /bin/ls -l | /usr/bin/wc -l | /bin/sed 's: ::g'
@@ -91,7 +94,7 @@ rightprompt()
    # printf "%*s" $COLUMNS "$NCヘ$YELLOW$(/bin/ls -l | /usr/bin/wc -l | /bin/sed 's: ::g')"
    # printf "%*s" $COLUMNS "$NC$YELLOW$(filenumber;)$NC▨$YELLOW$(filesize;)b"
 }
-#------------------------------------
+# 1}}}
 # Greeting, motd, etc... {{{1
 #------------------------------------
 PS1="\n\[$(tput sc; rightprompt; tput rc)$NC┏┫$GREEN\]\u\[$NC\]@\[$BLUE\]\h\[$NC\]┣━━┫\[$BPURP\]\@\[$NC\]┣━━┫\[$CYAN\]\d\[$NC┣━━┫$YELLOW$(filenumber;)$NC⌂$YELLOW$(filesize;)b$NC┃\n┗━┫\[$YELLOW\]\w\[$NC\]┃ "
@@ -99,23 +102,21 @@ PS1="\n\[$(tput sc; rightprompt; tput rc)$NC┏┫$GREEN\]\u\[$NC\]@\[$BLUE\]\h\
 # Aliases {{{1
 #------------------------------------
 alias less='less --RAW-CONTROL-CHARS'
-export LS_OPTS='--color=auto'
 alias ls='ls ${LS_OPTS}'
 # export GREP_OPTIONS='--color=auto'
 alias grep='grep --color=auto'
 alias stopcolors='sed "s/\[^[[0-9;]*[a-zA-Z]//gi"'
 alias aptinstall='sudo aptitude install'
-# alias bullshit="curl -s http://cbsg.sourceforge.net/cgi-bin/live | grep -Eo '<li>(.*?)</li>' | sed s,\</\?li\>,,g | shuf -n 1 | cowsay -f kosh"
 alias bullshit="curl -s http://cbsg.sourceforge.net/cgi-bin/live | grep -Eo '<li>(.*?)</li>' | sed -e 's/<[^>]*>//g' | shuf -n 1 | cowsay -f kosh"
 alias lstree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/' | less"
-alias night="xrandr --output LVDS-1 --brightness 0.3"
-alias dim="xbacklight -set 1"
-alias bright="xbacklight -set 99"
-alias dim="xbacklight -dec 10 -steps 50"
 alias suspend="sudo systemctl suspend"
 alias trello="chromium --app=https://trello.comn"
 alias rstudio="chromium --app=http://192.168.1.178:8787"
 alias google="chromium --app=https://google.com"
+alias reddit="chromium --app=https://www.reddit.com"
+alias gmail="chromium --app=https://mail.google.com"
+alias reboot="sudo shutdown -r now"
+
 #------------------------------------
 # Custom {{{1
 #------------------------------------

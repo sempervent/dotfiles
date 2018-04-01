@@ -195,7 +195,7 @@ endif
 " indent folding with manual folds
 augroup vimrc
    au BufReadPre * setlocal foldmethod=indent
-   au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
+   au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=marker | endif
 augroup END
 
 " 1}}}
