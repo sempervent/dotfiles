@@ -1,7 +1,12 @@
 #!/usr/bash
-# Vim Install Vundle
+# ViM Install Vundle
+# TMUX install tpm
 cd ~ || exit
 cd .vim || mkdir .vim
 mkdir bundle || cd .vim
 
 git -C ~/.vim/bundle/ clone https://github.com/VundleVim/Vundle.vim
+git -C ~/.tmux/plugins/tpm clone https://github.com/tmux-plugins/tpm
+
+echo -e "Remember to run :PluginInstall in ViM\n"
+echo -e "And to run <prefix> + I to install plugins in TMUX\n"
