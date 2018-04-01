@@ -1,4 +1,5 @@
 " .vimrc
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "       Author: Joshua N. Grant                                                "                       
 "   Maintainer: Joshua N. Grant                                                "
@@ -271,4 +272,7 @@ let g:UltiSnipsJumpForwardTrigger='<c-b>'
 let g:UltiSnipsJumpBackwardTrigger='<c-z>'
 let g:UltiSnipsEditSplit="vertical"
 " 2}}}
+" 1}}}
+" Autoread Commands {{{1
+au BufReadPost,BufNewFile .*,*.conf set foldmethod=manual 
 " 1}}}

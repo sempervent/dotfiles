@@ -1,12 +1,19 @@
-# if not running interactively, don't do anything
+# ~.bashrc
+# :set fdm=marker
+# :set tw=79
+# https://github.com/sempervent/dotfiles
+################################################################################
+# general Settings {{{1
+# if not running interactively, don't do anything {{{2
 case $- in
    *i*) ;;
       *) return;;
-esac
-
+esac # 2}}}
+# use powerline for PS1 {{{2
 #powerline-daemon -q
 #. /usr/local/lib/python2.7/dist-packages/powerline/bindings/bash/powerline.sh
-###################
+# 2}}}
+# 1}}}
 # History {{{1
 ###################
 # don't put duplicate lines or lines starting with space in history
@@ -17,8 +24,8 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # set history length
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=100000
+HISTFILESIZE=200000
 
 # check the window after each command and update
 # values of LINES and COLUMNS
@@ -26,9 +33,8 @@ shopt -s checkwinsize
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-#-----------------------------------
-# Path
+# 1}}}
+# Path {{{1
 #-----------------------------------
 export PATH=$PATH:/home/josh/scripts:$JAVA_HOME/bin
 export EDITOR='vim'
@@ -44,18 +50,17 @@ export HADOOP_COMMON_HOME=$HADOOP_INSTALL
 export HADOOP_HDFS_HOME=$HADOOP_INSTALL
 export HADOOP_YARN_HOME=$HADOOP_INSTALL
 export HADOOP_CONF_DIR=$HADOOP_INSTALL/etc/hadoop
-
-# set variable identifying the chroot you work in
-
-# set a fancy propmt (non-color, unless we know we "want" color)
+# 1}}}
+# Aesthetics {{{1
+# set variable identifying the chroot you work in {{{2
+# 2}}}
+# set a fancy propmt (non-color, unless we know we "want" color) {{{2
 case $XTERM in 
    xterm-color) color_prompt=yes;;
 esac
-
-
+# 2}}}
 force_color_prompt=yes
-
-# Colors {{{1
+# Colors {{{2
 # Normal Colors
 BLACK='\e[0;30m'
 RED='\e[0;31m'
@@ -67,6 +72,8 @@ CYAN='\e[0;36m'
 WHITE='\e[0;37m'
 BPURP='\e[1;34m'
 NC="\e[m"
+# 2}}}
+# 1}}}
 
 filenumber()
 {

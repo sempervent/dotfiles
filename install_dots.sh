@@ -97,5 +97,8 @@ else
    echo -e "\t\t\t\t${RED}${pwrlnconfig}{$NC} not found."
 fi
 
+echo -e "Installing ${LCYAN}Tmux Plugin Manager${NC}"
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm 
+
 # report exit status
 echo -e "\nYour ${GREEN}Dotfiles${NC} have been updated.\n"
