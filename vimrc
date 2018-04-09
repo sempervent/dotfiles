@@ -1,9 +1,9 @@
 " .vimrc
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"       Author: Joshua N. Grant                                                "                       
+"       Author: Joshua N. Grant                                                "          
 "   Maintainer: Joshua N. Grant                                                "
-"      Version: 1.0 - Fri 31 Mar 2017 10:01:32 AM EDT                          "
+"      Version: 1.1 - Fri 01 Apr 2018 05:45:16 PM EDT                          "     
+"               1.0 - Fri 31 Mar 2017 10:01:32 AM EDT                          "
 "     Sections:                                                                "
 "               -> Initialize Vundle and Powerline                             "
 "               -> General Settings                                            "

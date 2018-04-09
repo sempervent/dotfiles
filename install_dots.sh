@@ -1,14 +1,14 @@
 #!/bin/bash
 ############
 # install_dots.sh
-# this script creates symlinks from the home directory to the dotfiles in ~/dotfiles
-############
-
-############ variables
+# this script creates symlinks from the home directory to the dotfiles in 
+# ~/dotfiles, and will install the applications and the pips, tmux, 
+# powerline, conky, and i3
+# variables {{{1
 dir=~/dotfiles
 olddir=~/.dotfiles_old
 i3dir=~/.i3
-# configdir=~/.config
+scriptsDir=~/.scripts
 files="vimrc bashrc tmux.conf gitconfig xinitrc Xresources Xdefaults minttyrc"
 i3files='i3config'
 pwrlnconfig=~/.config/powerline
@@ -16,11 +16,10 @@ pwrln="tmux_powerline.conf"
 # shellcheck source="$HOME/dotfiles/colors.sh"
 source "$dir/colors.sh"
 brand="Sempervent's dotfiles"
-
 apts="i3wm tmux i3 i3blocks conky"
 pips="powerline-status"
-
-############ getopts
+# 1}}}
+# getopts {{{1
 while getopts ":i" opt; do
    case $opt in
       i)
@@ -39,25 +38,29 @@ while getopts ":i" opt; do
          echo -e "Invalid option: -$OPTARG" >&2
    esac
 done
-
-
+# 1}}}
+# sudo check {{{1
+# uncomment below to only run if sudo
 #if [ $EUID != 0 ]; then
 #   sudo "$0" "$@"
 #   exit $?
 #fi
-
-
-############ work
+# 1}}}
+# setup directory structures {{{1
 # create dotfiles_old in homedir
 echo -e "${NC}Creating ${LCYAN}${olddir}${NC} for backup of any existing dotfiles in ~"
 mkdir -p ${olddir}
 echo -e "\t\t\t\t\t...${GREEN}done\n"
-
+# create directory structure for vim undo
+mkdir ~/.vim/undo
+# create the scripts directory
+mkdir ~/.scripts
+# 1}}}
+# syncronize files {{{1
 # change to dotfiles dir
 echo -e "${NC}Changing directory to ${LCYAN}${dir}${NC} directory"
 cd ${dir} || exit
 echo -e "\t\t\t\t\t...${GREEN}done${NC}\n"
-
 # move any existing dotfiles in homedir to dotfiles_old directory
 # then create symlinks
 for file in $files; do
@@ -66,8 +69,8 @@ for file in $files; do
    echo -e "\tCreating symlink to ${GREEN}${file}${NC} in home directory.\n"
    ln -s "$dir/$file" "$HOME/.$file"
 done
-
-# move i3 files
+# 1}}}
+# move i3 files {{{1
 echo -e "Checking for ${CYAN}i3${NC} directory"
 if [ -d "$i3dir" ];then
    echo -e "Changing to ${YELLOW}${i3dir}${NC}"
@@ -79,10 +82,9 @@ if [ -d "$i3dir" ];then
 else
    echo -e "\t${RED}${i3dir}${NC} not found.\n"
 fi
-
 cd $dir || exit
-
-# powerline config files
+# 1}}}
+# powerline config files {{{1
 echo -e "Checking for ${CYAN}${pwrlnconfig}${NC} directory."
 if [ -d "$pwrlnconfig" ];then
    echo -e "Found dir ${YELLOW}${pwrlnconfig}${NC}."
@@ -96,9 +98,12 @@ if [ -d "$pwrlnconfig" ];then
 else
    echo -e "\t\t\t\t${RED}${pwrlnconfig}{$NC} not found."
 fi
-
+# 1}}}
+# setup tmux plugin manager {{{1
 echo -e "Installing ${LCYAN}Tmux Plugin Manager${NC}"
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm 
-
+# 1}}}
+# exit {{{1
 # report exit status
 echo -e "\nYour ${GREEN}Dotfiles${NC} have been updated.\n"
+# 1}}}

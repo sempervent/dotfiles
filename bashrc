@@ -3,13 +3,14 @@
 # :set tw=79
 # https://github.com/sempervent/dotfiles
 ################################################################################
-# general Settings {{{1
+# General Settings {{{1
 # if not running interactively, don't do anything {{{2
 case $- in
    *i*) ;;
       *) return;;
 esac # 2}}}
 # use powerline for PS1 {{{2
+# uncomment below to enable powerline as PS1
 #powerline-daemon -q
 #. /usr/local/lib/python2.7/dist-packages/powerline/bindings/bash/powerline.sh
 # 2}}}
@@ -77,28 +78,10 @@ BPURP='\e[1;34m'
 NC="\e[m"
 # 2}}}
 # 1}}}
-# prompt functions {{{1
-filenumber()
-{
-   /bin/ls -l | /usr/bin/wc -l | /bin/sed 's: ::g'
-}
-
-filesize()
-{
-   /bin/ls -lah | /bin/grep -m 1 total | /bin/sed 's/total //'
-}
-
-rightprompt()
-{
-   printf "%*s" $COLUMNS "$NCⁿ$RED\j $NCª$YELLOW\!"
-   # printf "%*s" $COLUMNS "$NCヘ$YELLOW$(/bin/ls -l | /usr/bin/wc -l | /bin/sed 's: ::g')"
-   # printf "%*s" $COLUMNS "$NC$YELLOW$(filenumber;)$NC▨$YELLOW$(filesize;)b"
-}
-# 1}}}
-# Greeting, motd, etc... {{{1
-#------------------------------------
-PS1="\n\[$(tput sc; rightprompt; tput rc)$NC┏┫$GREEN\]\u\[$NC\]@\[$BLUE\]\h\[$NC\]┣━━┫\[$BPURP\]\@\[$NC\]┣━━┫\[$CYAN\]\d\[$NC┣━━┫$YELLOW$(filenumber;)$NC⌂$YELLOW$(filesize;)b$NC┃\n┗━┫\[$YELLOW\]\w\[$NC\]┃ "
-#------------------------------------
+# Prompt, Greeting, etc {{{1
+# Prompt {{{2
+PS1="\n$NC┏┫$GREEN\]\u\[$NC\]@\[$BLUE\]\h\[$NC\]┣━━┫\[$BPURP\]\@\[$NC\]┣━━┫\[$CYAN\]\d\[$NC┣━━┃\n┗━┫\[$YELLOW\]\w\[$NC\]┃ "
+# 2}}}
 # Aliases {{{1
 #------------------------------------
 alias less='less --RAW-CONTROL-CHARS'
@@ -110,7 +93,7 @@ alias aptinstall='sudo aptitude install'
 alias bullshit="curl -s http://cbsg.sourceforge.net/cgi-bin/live | grep -Eo '<li>(.*?)</li>' | sed -e 's/<[^>]*>//g' | shuf -n 1 | cowsay -f kosh"
 alias lstree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/' | less"
 alias suspend="sudo systemctl suspend"
-alias trello="chromium --app=https://trello.comn"
+alias trello="chromium --app=https://trello.com"
 alias rstudio="chromium --app=http://192.168.1.178:8787"
 alias google="chromium --app=https://google.com"
 alias reddit="chromium --app=https://www.reddit.com"
