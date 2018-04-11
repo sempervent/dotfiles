@@ -148,6 +148,7 @@ exec --no-startup-id light-locker
 exec --no-startup-id pasystray
 exec --no-startup-id blueman-applet
 exec --no-startup-id /bin/bash ~/.fehbg
+exec --no-startup-id udiskie
 #exec --no-startup-id 
 # 1}}}
 
