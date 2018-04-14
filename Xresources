@@ -2,7 +2,7 @@
 *foreground:   #b2b2b2
 *font: Source Code Pro for Powerline:size=8
 URxvt*letterSpace:   -2
-URxvt.font:  xft:MonofurForPowerline:size=11
+URxvt.font:  xft:Monofur For Powerline:size=11
 XTerm*faceName: Source Code Pro for Powerline:size=9
 XTerm.termName: xterm-256color
 rofi.combi-modi: window,drun,ssh

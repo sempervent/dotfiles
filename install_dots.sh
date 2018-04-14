@@ -7,7 +7,7 @@
 # variables {{{1
 dir=~/dotfiles
 olddir=~/.dotfiles_old
-i3dir=~/.i3
+i3dir=~/.config/i3
 scriptsDir=~/.scripts
 files="vimrc bashrc tmux.conf gitconfig xinitrc Xresources Xdefaults minttyrc"
 i3files='i3config'
@@ -76,9 +76,9 @@ if [ -d "$i3dir" ];then
    echo -e "Changing to ${YELLOW}${i3dir}${NC}"
    cd ${i3dir} || exit
    echo -e "Backing up i3config"
-   mv ~/.i3/config ~/.i3/config.back
+   mv ~/config/i3/config ~/.config/i3/config.back
    echo -e "\tCreating symlink to ${GREEN}${i3files}${NC} in ${CYAN}${i3dir}${NC}.\n"
-   ln -s ~/dotfiles/i3config ~/.i3/config 
+   ln -s ~/dotfiles/i3config ~/.config/i3/config 
 else
    echo -e "\t${RED}${i3dir}${NC} not found.\n"
 fi

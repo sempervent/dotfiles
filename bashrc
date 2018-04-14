@@ -9,6 +9,20 @@ case $- in
    *i*) ;;
       *) return;;
 esac # 2}}}
+# start tmux if running interactively
+if [[ -z "$TMUX" ]] ;then
+    ID="$( tmux ls | grep -vm1 attached | cut -d: -f1 )" # get the id of a deattached session
+    if [[ -z "$ID" ]] ;then # if not available create a new one
+        tmux new-session
+    else
+        tmux attach-session -t "$ID" # if available attach to it
+    fi
+fi
+# arch & i3 --> autostart x at login {{2
+if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+   exec startx
+fi
+# 2}}}
 # use powerline for PS1 {{{2
 # uncomment below to enable powerline as PS1
 #powerline-daemon -q
@@ -107,28 +121,30 @@ alias reboot="sudo shutdown -r now"
 #------------------------------------
 # Custom Commands {{{1
 #------------------------------------
-aptsearch () 
-{
-   # search and highlight keyword in the results
-   export GREP_COLOR='1'
-   # remove regexp patterns from the keyword to highlight
-   keyword=`echo -n "$1" | sed -e 's/[^[:alnum:]|-]//g'`
-   echo "Highlight keyword: $keyword"
-   aptitude search "$1" --disable-columns | egrep --color "$keyword"
+# aptsearch () 
+# {
+   # # search and highlight keyword in the results
+   # export GREP_COLOR='1'
+   # # remove regexp patterns from the keyword to highlight
+   # keyword=`echo -n "$1" | sed -e 's/[^[:alnum:]|-]//g'`
+   # echo "Highlight keyword: $keyword"
+   # aptitude search "$1" --disable-columns | egrep --color "$keyword"
 
-   # use the matching results to complete our install command
-   matching=$(aptitude search --disable-columns -F "%p" "$1" | tr '\n' ' ')
-   count=0
-   for i in $matching ; do
-      count=$((count + 1))
-   done
-   complete -W '$matching' aptinstall
-   echo "(Matching packages: $count)"
-   if ! [ -z $2 ] ; then
-      echo -e "$matching" | egrep --color=always "$keyword"
-   fi
-}
-markdown(){
-   ~/scripts/Markdown_1.0.1/Markdown.pl $1 | lynx -stdin
-}
+   # # use the matching results to complete our install command
+   # matching=$(aptitude search --disable-columns -F "%p" "$1" | tr '\n' ' ')
+   # count=0
+   # for i in $matching ; do
+      # count=$((count + 1))
+   # done
+   # complete -W '$matching' aptinstall
+   # echo "(Matching packages: $count)"
+   # if ! [ -z $2 ] ; then
+      # echo -e "$matching" | egrep --color=always "$keyword"
+   # fi
+# }
+# markdown(){
+   # ~/scripts/Markdown_1.0.1/Markdown.pl $1 | lynx -stdin
+# }
 #wal -R
+# 1}}}
+

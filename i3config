@@ -70,8 +70,8 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 # launch google as an app with chromium
 bindsym $mod+g chromium --app=http://www.google.com
 # start a terminal
-bindsym $mod+Return exec xterm 
-bindsym $mod+Shift+Return exec xterm --class FXTerm
+bindsym $mod+Return exec urxvt 
+bindsym $mod+Shift+Return exec urxvt --class FXTerm
 # 1}}}
 # workspaces {{{1
 bindsym $mod+i exec --no-startup-id ~/.scripts/rofi-scripts/i3_switch_workspace.sh
