@@ -15,8 +15,8 @@ floating_modifier $mod
 # kill focused window
 bindsym $mod+Shift+q kill
 # start dmenu (a program launcher)
-bindsym $mod+d exec rofi \
-      -show run bg "#222222" -fg "#9ECC71" \
+bindsym $mod+d exec rofi -show drun \
+       bg "#222222" -fg "#9ECC71" \
       -hlbg "#445544" -hlfg "#2EEE71" -bw 4 \
       -eh 1 -font "Roboto Slab 8" -opacity "30" \
       -lines 8 -line-margin 4 -width 60 \
@@ -124,32 +124,72 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 # 1}}}
 # i3bar {{{1
-bar {
-   mode dock
-   # mode hide
-   # hidden_state hide
-   modifier $mod
-   font pango:FuraMono-Bold Powerline 10px
-   colors {
-            background #110B11
-            statusline #999999
-            separator #a99fd2
-   }
-   binding_mode_indicator yes 
-   status_command $HOME/dotfiles/conky/conkyi3wrapper.sh
-   position top
-   tray_output primary
-}
+# bar configuration moved to polybar
+# bar {
+   # # use lemonbar for the pretty
+   # # i3bar_command lemonbar
+   # # i3bar_command i3br
+   # # mode dock
+   # # mode hide
+   # # hidden_state hide
+   # # modifier $mod
+   # # font pango:FuraMono-Bold Powerline 10px
+   # # colors {
+            # # background #110B11
+            # # statusline #999999
+            # # separator #a99fd2
+   # # }
+   # binding_mode_indicator yes 
+   # # status_command $HOME/dotfiles/conky/conkyi3wrapper.sh
+   # # status_command exec python3 /usr/lib/python3.6/site-packages/powerline/bindings/i3/powerline-i3.py
+   # position top
+   # tray_output primary
+   # i3bar_command ~/.config/i3/lemonbar/i3_lemonbar.sh
+# }
 # 1}}}
 # autostart with i3 {{{1
 # exec --no-startup-id wicd-client --tray
+# exec --no-startup-id stalonetray 
+exec --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id nm-applet --sm-disable
 exec --no-startup-id light-locker
 exec --no-startup-id pasystray
 exec --no-startup-id blueman-applet
 exec --no-startup-id /bin/bash ~/.fehbg
-exec --no-startup-id udiskie
+exec --no-startup-id udiskie --tray
+exec --no-startup-id modem-manager-gui -i
+# exec --no-startup-id cbatticon
 #exec --no-startup-id 
 # 1}}}
+# locker and sleep settings {{{1
+set $Locker i3lock && sleep 1
 
+set $mode_system System (1) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+   bindsym l exec --no-startup-id $Locker, mode "default"
+   bindsym e exec --no-startup-id i3-msg exit, mode "default"
+   bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
+   bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
+   bindsym r exec --no-startup-id systemctl reboot, mode "default"
+   bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
+   # back to normal: Enter or Escape
+   bindsym Return mode "default"
+   bindsym Escape mode "default"
+}
+bindsym $mod+Pause mode "$mode_system"
+# 1}}}
+# manual management of external displays {{{1
+set $mode_display Ext Screen (b) VGA/HDMI ON ABOVE LEFT/RIGHT, (v) VGA ON,  (h) HDMI ON, (x) VGA OFF, (y) HDMI OFF
+mode "$mode_display" {
+   bindsym b exec --no-startup-id xrand --output VGA1 --auto --above LVDS1 --output HDMI1 --right-of VGA1 --auto, mode "default"
+   bindsym v exec --no-startup-id xrandr --output VGA1 --auto --above LVDS1, mode "default"
+   bindsym h exec --no-startup-id xrandr --output HDMI1 --auto --above LVDS1, mode "default"
+   bindsym x exec --no-startup-id xrandr --output VGA1 --auto --off, mode "default"
+   bindsym y exec --no-startup-id xrandr --output HDMI1 --auto --off, mode "default"
+   # back to norma: Escape or Enter
+   bindsym Return mode "default"
+   bindsym Escape mode "default"
+}
+bindsym $mod+x mode "$mode_display"
+# 1}}}
 #exec --no-startup-id i3-msg 'workspace 10:trello; exec ~/dotfiles/i3/chromium_fs.sh https://trello.com/b/NdpDAqYd/home; workspace 9:slack; exec slack;'

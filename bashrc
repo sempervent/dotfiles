@@ -10,17 +10,21 @@ case $- in
       *) return;;
 esac # 2}}}
 # start tmux if running interactively
-if [[ -z "$TMUX" ]] ;then
-    ID="$( tmux ls | grep -vm1 attached | cut -d: -f1 )" # get the id of a deattached session
-    if [[ -z "$ID" ]] ;then # if not available create a new one
-        tmux new-session
-    else
-        tmux attach-session -t "$ID" # if available attach to it
-    fi
-fi
+# if [[ -z "$TMUX" ]] ;then
+    # ID="$( tmux ls | grep -vm1 attached | cut -d: -f1 )" # get the id of a deattached session
+    # if [[ -z "$ID" ]] ;then # if not available create a new one
+        # tmux new-session
+    # else
+        # tmux attach-session -t "$ID" # if available attach to it
+    # fi
+# fi
 # arch & i3 --> autostart x at login {{2
 if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
    exec startx
+fi
+# autocomplete with sudo
+if [ "$PS1" ]; then
+   complete -cf sudo
 fi
 # 2}}}
 # use powerline for PS1 {{{2

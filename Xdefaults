@@ -1,6 +1,55 @@
-# ~/.Xdefautls
+! ~/.Xdefautls
+! xhh config for terminals
 
-*background: #110B11
-*foreground: #B7990D
+! normal settings {{{1
+Xft.dpi:       96
+Xft.antialias: true
+Xft.rgba:      rgb
+Xft.hinting:   true
+Xft.hintstyle: hintslight
+! 1}}}
+! terminal color scheme {{{1
+*background: rgb:11/0B/11
+*foreground: rgb:B7/99/0D
+! black
+*color0: rgb:05/04/04
+*color8: rgb:2e/28/2a
+! red
+*color1: rgb:e4/57/2e
+*color9: rgb:ff/22/0c
+! green
+*color2: rgb:76/b0/41
+*color10: rgb:6f/7c/12
+! brown/yellow
+*color3: rgb:ff/c9/14
+*color11: rgb:48/35/19
+! blue
+*color4: rgb:17/be/bb
+*color12: rgb:0c/74/89
+! magenta
+*color5: rgb:dc/8a/a1
+*color13: rgb:80/47/5e
+! cyan
+*color6: rgb:a9/bc/d0
+*color14: rgb:25/5f/85
+! white
+*color7: rgb:28/c8/c8
+*color15: rgb:c9/b7/9c
+! 1}}}
+! urxvt settings {{{1
+! transparency {{{2
+URxvt.inheritPixmap: true
+URxvt.transparent: true
+URxvt.shading: 20 
+! 2}}}
 URxvt.font: xft:MonoFur for Powerline:size=10
 URxvt.scrollBar: false
+URxvt.perl-ext-common: url-select,autocomplete-ALL-the-things
+URxvt.keysym.M-slash: perl:aAtt:complete
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.rend.0: Uline Bold fg5
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.url-select.launcher: /usr/bin/xdg-open
+URxvt.url-select.underline: true
+! 1}}}
+
