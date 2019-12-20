@@ -152,3 +152,4 @@ alias reboot="sudo shutdown -r now"
 #wal -R
 # 1}}}
 
+alias aurman="pikaur"
